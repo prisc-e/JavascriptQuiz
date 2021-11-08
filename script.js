@@ -6,7 +6,7 @@ var multChoice = document.getElementById("selection");
 //Get references to the #start element
 let startBtn = document.querySelector("#start");
 var points = 0;
-let quizQs =[
+let q1 =[
   {
     question: "Between which tag is Javascript code inserted?",
     answer: "2. <script></script>",
@@ -16,7 +16,8 @@ let quizQs =[
       "3. <js></js>",
       "4. <java></java>"
     ]
-  },
+  }];
+let q2 =[
   {
     question: "How is a constant variable declared?",
     answer: "4. const (variable name)",
@@ -26,8 +27,9 @@ let quizQs =[
       "3. (variable name) in all uppercase letters",
       "4. const (variable name)"
     ]
-  },
-  {
+  }];
+let q3 =[
+    {
     question: "What is the correct way to define a function with 2 parameters?",
     answer: "function name(parameter1, parameter2){",
     choices: [
@@ -36,7 +38,8 @@ let quizQs =[
       "3. function(name).parameter1.parameter2){",
       "4. name.function(parameter1,parameter2){"
     ]
-  },
+  }];
+  let q4=[
   {
     question: "What does the concat() method do?",
     answer: "4. Joins 2 or more strings",
@@ -46,8 +49,8 @@ let quizQs =[
       "3. Trims a string",
       "4. Joins 2 or more strings"
     ]
-  },
-  {
+  }];
+  let q5= [{
     question: "What does the break statement do?",
     answer: "3. Jumps out of a loop",
     choices: [
@@ -56,24 +59,27 @@ let quizQs =[
       "3. Jumps out of a loop",
       "4. Jumps into a loop"
     ]
-  },
-];
+  }];
+
+
 function runQuiz(){
   var correct = true;
   
 
-  multChoice.addEventListener("click", function(event) {
+  multChoice.addEventListener("click", isCorrect); 
     var choice = multChoice.event;
- 
+
+//Object.values(q1).forEach(val => Selection(val));
+//create foreach to loop through choices(make questions separate strings to be called)
   
-  for (var i = 0; i< quizQs.length; i++){
-    quiz.textContent = quizQs[i].question;
-    multChoice.textContent = quizQs[i].choices;
-    if (choice === answer){
-        getPoints(correct);
-      }
+   
     
   }   
+  function isCorrect(){
+    if (choice.value === answer.value){
+            getPoints(correct);
+        }
+  }
   function getPoints(correct){
     if (correct){
       points++;
@@ -83,22 +89,22 @@ function runQuiz(){
   function quizSelector(){
 
   }
-  });
-}
+  
+
 function startQuiz(){
   
     countdown();
-  
-  runQuiz();
+    runQuiz();
   
 }
 function countdown(){
-  var setTime = 75;
-  timerStart.textContent = setTime;
-  
-  
+  var setTime = setInterval(countdown, 75000);
+  timerStart.textContent = "Time: " + setTime;
   setTime--;
-
+if (setTime < 0){
+    clearInterval(setTime);
+    
+}
 };
 //
 // Add event listener to generate button
